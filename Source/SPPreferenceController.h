@@ -51,7 +51,6 @@
 	IBOutlet SPTablesPreferencePane  <SPPreferencePaneProtocol>       *tablesPreferencePane;
 	IBOutlet SPNotificationsPreferencePane <SPPreferencePaneProtocol> *notificationsPreferencePane;
 	IBOutlet SPEditorPreferencePane <SPPreferencePaneProtocol>        *editorPreferencePane;
-	IBOutlet SPAutoUpdatePreferencePane <SPPreferencePaneProtocol>    *autoUpdatePreferencePane;
 	IBOutlet SPNetworkPreferencePane <SPPreferencePaneProtocol>       *networkPreferencePane;
 
 	NSToolbar *toolbar;

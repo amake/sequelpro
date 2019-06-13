@@ -52,7 +52,6 @@
 #import "SPOSInfo.h"
 
 #import <PSMTabBar/PSMTabBarControl.h>
-#import <Sparkle/Sparkle.h>
 
 @interface SPAppController ()
 
@@ -132,9 +131,6 @@
 
 	// Set up the prefs controller
 	prefsController = [[SPPreferenceController alloc] init];
-
-	// Set Sparkle delegate
-	[[SUUpdater sharedUpdater] setDelegate:self];
 
 	// Register SPAppController as services provider
 	[NSApp setServicesProvider:self];
@@ -2214,29 +2210,6 @@
 - (NSDictionary *)bundleKeyEquivalentsForScope:(NSString*)scope
 {
 	return [bundleKeyEquivalents objectForKey:scope];
-}
-
-/**
- * Sparkle updater delegate method. Called just before the updater relaunches Sequel Pro and we need to make
- * sure that no sheets are currently open, which will prevent the app from being quit. 
- */
-- (void)updaterWillRelaunchApplication:(SUUpdater *)updater
-{	
-	// Sparkle might call this on a background thread, but calling endSheet: from a bg thread is unhealthy
-	if(![NSThread isMainThread]) return [[self onMainThread] updaterWillRelaunchApplication:updater];
-
-	// Get all the currently open windows and their attached sheets if any
-	NSArray *windows = [NSApp windows];
-	
-	for (NSWindow *window in windows)
-	{
-		NSWindow *attachedSheet = [window attachedSheet];
-		
-		if (attachedSheet) {
-			[NSApp endSheet:attachedSheet returnCode:0];
-			[attachedSheet orderOut:nil];
-		}
-	}
 }
 
 /**

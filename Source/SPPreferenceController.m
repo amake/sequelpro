@@ -48,7 +48,6 @@
 @synthesize tablesPreferencePane;
 @synthesize notificationsPreferencePane;
 @synthesize editorPreferencePane;
-@synthesize autoUpdatePreferencePane;
 @synthesize networkPreferencePane;
 @synthesize fontChangeTarget;
 
@@ -73,7 +72,6 @@
 					   tablesPreferencePane,
 					   notificationsPreferencePane,
 					   editorPreferencePane,
-					   autoUpdatePreferencePane,
 					   networkPreferencePane,
 					   nil];
 }
@@ -183,14 +181,6 @@
 	[editorItem setTarget:self];
 	[editorItem setAction:@selector(displayPreferencePane:)];
 	
-	// AutoUpdate preferences
-	autoUpdateItem = [[NSToolbarItem alloc] initWithItemIdentifier:[autoUpdatePreferencePane preferencePaneIdentifier]];
-
-	[autoUpdateItem setLabel:[autoUpdatePreferencePane preferencePaneName]];
-	[autoUpdateItem setImage:[autoUpdatePreferencePane preferencePaneIcon]];
-	[autoUpdateItem setTarget:self];
-	[autoUpdateItem setAction:@selector(displayPreferencePane:)];
-
 	// Network preferences
 	networkItem = [[NSToolbarItem alloc] initWithItemIdentifier:[networkPreferencePane preferencePaneIdentifier]];
 
